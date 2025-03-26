@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script
+            src="https://unpkg.com/alpinejs"
+            defer
+        ></script>
+        <title>Document</title>
+    </head>
+    <script>
+        function data() {
+            return {
+                title: 'tic-tac-toe game',
+            }
+        }
+    </script>
+
+    <body>
+        <div
+            x-data="data()"
+            class="flex flex-col justify-center items-center gap-5 h-screen"
+        >
+            <div
+                class="font-bold text-4xl"
+                x-text="title"
+            ></div>
+            <div class="gap-4 grid grid-cols-3">
+                <template x-for="i in 9">
+                    <div
+                        @click="console.log(i)"
+                        class="flex justify-center items-center bg-gray-100 border border-black size-20 font-bold text-3xl"
+                    ></div>
+                </template>
+            </div>
+        </div>
+    </body>
+
+</html>
