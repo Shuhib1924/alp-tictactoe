@@ -18,11 +18,22 @@
         function data() {
             return {
                 title: 'tic-tac-toe game',
+                turns: [],
                 step(index) {
-                    return this.$el.innerHTML = index;
+                    // 1. check if field is occupied
+                    if (!this.turns.includes(index)) {
+                        // 2. add turn
+                        this.turns.push(index)
+                        if (this.turns.length % 2 == 0) {
+                            return this.$el.innerText = 'X'
+                        } else {
+                            return this.$el.innerText = 'O'
+                        }
+                    }
                 }
             }
         }
+
     </script>
 
     <body>
@@ -42,6 +53,7 @@
                     ></div>
                 </template>
             </div>
+            <div x-text="turns"></div>
         </div>
     </body>
 
