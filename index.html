@@ -18,6 +18,9 @@
         function data() {
             return {
                 title: 'tic-tac-toe game',
+                step(index) {
+                    return this.$el.innerHTML = index;
+                }
             }
         }
     </script>
@@ -34,7 +37,7 @@
             <div class="gap-4 grid grid-cols-3">
                 <template x-for="i in 9">
                     <div
-                        @click="console.log(i)"
+                        @click="step(i)"
                         class="flex justify-center items-center bg-gray-100 border border-black size-20 font-bold text-3xl"
                     ></div>
                 </template>
