@@ -18,16 +18,22 @@
         function data() {
             return {
                 title: 'tic-tac-toe game',
-                turns: [],
+                all_turns: [],
+                x_turns: [],
+                o_turns: [],
                 step(index) {
-                    // 1. check if field is occupied
-                    if (!this.turns.includes(index)) {
+                    if (!this.all_turns.includes(index)) {
                         // 2. add turn
-                        this.turns.push(index)
-                        if (this.turns.length % 2 == 0) {
-                            return this.$el.innerText = 'X'
+                        if (this.all_turns.length % 2 == 0) {
+                            this.all_turns.push(index)
+                            this.x_turns.push(index)
+                            this.x_turns.sort()
+                            this.$el.innerText = 'X'
                         } else {
-                            return this.$el.innerText = 'O'
+                            this.all_turns.push(index)
+                            this.o_turns.push(index)
+                            this.o_turns.sort()
+                            this.$el.innerText = 'O'
                         }
                     }
                 }
@@ -53,7 +59,9 @@
                     ></div>
                 </template>
             </div>
-            <div x-text="turns"></div>
+            <div x-text="all_turns"></div>
+            <div x-text="x_turns"></div>
+            <div x-text="o_turns"></div>
         </div>
     </body>
 
