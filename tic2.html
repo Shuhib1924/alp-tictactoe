@@ -36,7 +36,30 @@
                     if (!this.board[index] && !this.winner) {
                         this.board[index] = this.current_turn;
                         this.current_turn = this.current_turn == 'X' ? 'O' : 'X';
+                        this.turns.push(index);
+                        this.check_winner();
                     }
+                },
+                check_winner() {
+                    for (i of this.winner_position) {
+                        if (i.every((x) => this.board[x - 1] == 'X')) {
+                            this.title = 'X win';
+                            this.winner = true;
+                        } else if (i.every((x) => this.board[x - 1] == 'O')) {
+                            this.title = 'O win';
+                            this.winner = true;
+                        } else if (this.turns.length == 9) {
+                            this.title = 'Draw';
+                            this.winner = true;
+                        }
+                    }
+                },
+                reset() {
+                    this.title = 'tic-tac-toe game';
+                    this.board = Array(9);
+                    this.turns = [];
+                    this.winner = false;
+                    this.current_turn = 'X';
                 }
             }
         }
@@ -61,7 +84,11 @@
                 </template>
             </div>
             <div x-text="`current player： ${current_turn}`"></div>
-            <div x-text="board"></div>
+            <!-- <div x-text="board"></div> -->
+            <div
+                class="bg-blue-300 px-6 py-2 text-white"
+                @click="reset()"
+            >Reset</div>
         </div>
     </body>
 
